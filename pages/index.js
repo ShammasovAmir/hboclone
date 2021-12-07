@@ -1,6 +1,9 @@
 import Head from 'next/head'
+import { useStateContext } from '../components/HBOProvider'
 
 export default function Home() {
+  const { test } = useStateContext()
+
   return (
     <div>
       <div className="login-user">
@@ -16,7 +19,7 @@ export default function Home() {
               alt=""
               className="login-user__user-img"
             />
-            <div className="login-user__user-name">Bryant</div>
+            <div className="login-user__user-name">{test}</div>
           </div>
         </div>
 
