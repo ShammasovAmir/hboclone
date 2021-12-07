@@ -37,7 +37,7 @@ const Account = () => {
       <div className="account__menu">
         <ul className="account__main">
           <li>
-            <a href="/" className="active">
+            <a href="#" className="active">
               My List
             </a>
           </li>
@@ -45,10 +45,10 @@ const Account = () => {
         <div className="side-nav__divider"></div>
         <ul className="account__main">
           <li>
-            <a href="/">Account</a>
+            <a href="#">Account</a>
           </li>
           <li>
-            <a href="/">Sign Out</a>
+            <a href="#">Sign Out</a>
           </li>
         </ul>
       </div>
