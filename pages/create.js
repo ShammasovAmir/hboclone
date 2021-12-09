@@ -1,6 +1,44 @@
 import Head from 'next/head'
+import { useStateContext } from '../components/HBOProvider'
+import ls from 'local-storage'
+import { v4 } from 'uuid'
+import { useRouter } from 'next/router'
 
 export default function CreateUser() {
+  const globalState = useStateContext()
+
+  const router = useRouter()
+
+  const saveUser = () => {
+    let users = [],
+      user
+
+    if (ls('users') < 1) {
+      user = {
+        id: v4(),
+        name: globalState.user,
+        myListId: [],
+      }
+      users.push(user)
+      ls('users', users)
+
+      console.log('Users: ', users)
+      console.log('Local Users: ', ls('users'))
+    } else {
+      users = ls('users')
+      user = {
+        id: v4(),
+        name: globalState.user,
+        myListId: [],
+      }
+      users.push(user)
+      ls('users', users)
+      router.push('/login')
+      console.log('Users: ', users)
+      console.log('Local Users: ', ls('users'))
+    }
+  }
+
   return (
     <div>
       <div className="create-user">
@@ -11,13 +49,18 @@ export default function CreateUser() {
 
         <div className="create-user__form">
           <img
-            src="https://uifaces.co/our-content/donated/vIqzOHXj.jpg"
+            src={globalState.defaultUserImage}
             alt=""
             className="create-user__user-img"
           />
           <div className="create-user__input-group">
             <label htmlFor="">Name</label>
-            <input type="text" className="create-user__input-text" />
+            <input
+              value={globalState.user}
+              onChange={globalState.createUserAction}
+              type="text"
+              className="create-user__input-text"
+            />
             <div className="create-user__colors">
               <div
                 className="create-user__color create-user__color--active"
@@ -65,7 +108,9 @@ export default function CreateUser() {
 
         <div className="create-user__buttons">
           <button className="create-user__cancel">Cancel</button>
-          <button className="create-user__save">Save</button>
+          <button className="create-user__save" onClick={saveUser}>
+            Save
+          </button>
         </div>
       </div>
     </div>
