@@ -22,6 +22,7 @@ export default function CreateUser() {
       users.push(user)
       ls('users', users)
 
+      router.push('/login')
       console.log('Users: ', users)
       console.log('Local Users: ', ls('users'))
     } else {

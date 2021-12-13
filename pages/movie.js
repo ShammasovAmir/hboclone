@@ -1,5 +1,5 @@
 import Head from 'next/head'
-
+import AuthCheck from '../components/AuthCheck'
 import MainLayout from '../components/Layouts/MainLayout'
 import CastInfo from '../components/UI/CastInfo/CastInfo'
 import FeaturedMedia from '../components/UI/FeaturedMedia/FeaturedMedia'
@@ -8,7 +8,7 @@ import JustAdded from '../components/UI/JustAdded/JustAdded'
 import PosterView from '../components/UI/PosterView/PosterView'
 
 export default function Movie() {
-  return (
+  return AuthCheck(
     <MainLayout>
       <FeaturedMedia />
       <PosterView />
