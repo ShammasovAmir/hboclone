@@ -12,6 +12,10 @@
   z-index: 10;
   transition: background 0.3s ease-in-out;
 
+  &--active {
+    background: rgba(0, 0, 0, 1);
+  }
+
   &:hover {
     background: rgba(0, 0, 0, 1);
   }
@@ -22,6 +26,10 @@
     width: 129px;
     background-image: url(/img/logo.svg);
     transform: scale(0.9);
+  }
+
+  &__menu-btn {
+    cursor: pointer;
   }
 
   &__left-side {
@@ -36,6 +44,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
   }
 
   &__user-img {

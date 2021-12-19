@@ -1,9 +1,19 @@
 import React from 'react'
+import { useStateContext } from '../../HBOProvider'
 
 const SideNav = () => {
+  const globalState = useStateContext()
+
   return (
-    <div className="side-nav ">
-      <div className="side-nav__close-btn">
+    <div
+      className={`side-nav ${
+        globalState.sideNavOpen ? 'side-nav--active' : ''
+      }`}
+    >
+      <div
+        className="side-nav__close-btn"
+        onClick={globalState.setSideNavOpenAction}
+      >
         <i className="fas fa-times" />
       </div>
       <ul className="side-nav__main">
