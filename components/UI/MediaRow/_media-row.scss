@@ -1,4 +1,4 @@
-.foryou-list {
+.media-row {
   padding: 20px 0 20px 50px;
 
   &__title {
@@ -21,16 +21,12 @@
   }
 
   &__thumbnail {
-    width: 450px;
-    height: 253px;
     position: relative;
     margin-right: 10px;
     object-fit: cover;
     object-position: center;
 
     img {
-      width: 450px;
-      height: 253px;
       object-fit: cover;
       object-position: center;
       flex-shrink: 0;
@@ -74,6 +70,58 @@
       transform: translate3d(0, 100px, 0);
       opacity: 0;
       transition: all 0.3s ease-in-out 0.2s;
+    }
+  }
+
+  // Large Vertical Posters
+  &.large-v {
+    .media-row__thumbnail {
+      width: 400px;
+      height: 600px;
+
+      img {
+        width: 400px;
+        height: 600px;
+      }
+    }
+  }
+
+  // Small Vertical Posters
+  &.small-v {
+    .media-row__thumbnail {
+      width: 240px;
+      height: 360px;
+
+      img {
+        width: 240px;
+        height: 360px;
+      }
+    }
+  }
+
+  // Large Horizontal Posters
+  &.large-h {
+    .media-row__thumbnail {
+      width: 700px;
+      height: 394px;
+
+      img {
+        width: 700px;
+        height: 394px;
+      }
+    }
+  }
+
+  // Small Horizontal Posters
+  &.small-h {
+    .media-row__thumbnail {
+      width: 450px;
+      height: 253px;
+
+      img {
+        width: 450px;
+        height: 253px;
+      }
     }
   }
 }

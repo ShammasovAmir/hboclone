@@ -28,7 +28,8 @@
     transform: scale(0.9);
   }
 
-  &__menu-btn {
+  &__menu-btn,
+  &__search-btn {
     cursor: pointer;
   }
 

@@ -8,6 +8,7 @@ const HBOProvider = ({ children }) => {
   const [user, setUser] = useState('')
   const [sideNavOpen, setSideNavOpen] = useState(false)
   const [accountModalOpen, setAccountModalOpen] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
 
   const defaultUserImage = 'https://uifaces.co/our-content/donated/vIqzOHXj.jpg'
 
@@ -16,6 +17,8 @@ const HBOProvider = ({ children }) => {
   const setSideNavOpenAction = () => setSideNavOpen(!sideNavOpen)
 
   const accountModalOpenAction = () => setAccountModalOpen(!accountModalOpen)
+
+  const searchOpenAction = () => setSearchOpen(!searchOpen)
 
   return (
     <StateContext.Provider
@@ -28,6 +31,8 @@ const HBOProvider = ({ children }) => {
         setSideNavOpenAction,
         accountModalOpen,
         accountModalOpenAction,
+        searchOpen,
+        searchOpenAction,
       }}
     >
       {children}
