@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import { shuffleArray } from '../../utilities'
 
-const MediaRow = ({ title, type }) => {
+const MediaRow = ({ title, type, endpoint }) => {
   const [loadingData, setLoadingData] = useState(true)
   const [movies, setMovies] = useState([])
 
@@ -10,10 +11,10 @@ const MediaRow = ({ title, type }) => {
   useEffect(() => {
     axios
       .get(
-        `https://api.themoviedb.org/3/discover/movie?with_genres=28&primary_release_year=2021&api_key=9a06c37273a24d219994b809eaf715bc&language=en-US`
+        `https://api.themoviedb.org/3/${endpoint}&api_key=9a06c37273a24d219994b809eaf715bc&language=en-US`
       )
       .then((response) => {
-        setMovies(response.data.results)
+        setMovies(shuffleArray(response.data.results))
         // handle success
         setLoadingData(false)
         console.log('Success response for ' + title)
