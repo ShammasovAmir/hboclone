@@ -33,16 +33,6 @@
     }
   }
 
-  &__thumbnail::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.082);
-    height: 100%;
-  }
-
   &__thumbnail-skeleton {
     margin-right: 10px;
   }

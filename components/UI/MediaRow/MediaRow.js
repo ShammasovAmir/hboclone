@@ -36,25 +36,45 @@ const MediaRow = ({ title, type, endpoint }) => {
     return thumbnails
   }
 
-  const showThumbnails = () => {
+  const showThumbnails = (type) => {
     return loadingData
       ? loopComp(<Skeleton />, 10)
-      : movies.map((movie) => <Thumbnail movieData={movie} key={movie.id} />)
+      : movies.map((movie) => (
+          <Thumbnail movieData={movie} type={type} key={movie.id} />
+        ))
   }
 
   return (
     <div className={`media-row ${type ? type : 'small-v'}`}>
       <h3 className="media-row__title">{title}</h3>
-      <div className="media-row__thumbnails">{showThumbnails()}</div>
+      <div className="media-row__thumbnails">{showThumbnails(type)}</div>
     </div>
   )
 }
 
-const Thumbnail = ({ movieData }) => {
+const Thumbnail = ({ movieData, type }) => {
+  const thumbnailSize = (type) => {
+    switch (type) {
+      case 'large-v':
+        return '400'
+      case 'small-v':
+        return '342'
+      case 'large-h':
+        return '780'
+      case 'small-h':
+        return '400'
+
+      default:
+        return '185'
+    }
+  }
+
   return (
     <div className="media-row__thumbnail">
       <img
-        src={`https://image.tmdb.org/t/p/original${movieData.poster_path}`}
+        src={`https://image.tmdb.org/t/p/w${thumbnailSize(type)}/${
+          movieData.poster_path
+        }`}
         alt=""
       />
       <div className="media-row__top-layer">
