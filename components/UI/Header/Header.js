@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { useStateContext } from '../../HBOProvider'
 import Account from '../Account/Account'
 import SearchModal from '../SearchModal/SearchModal'
@@ -29,7 +30,9 @@ const Header = () => {
           <i className="fas fa-search" />
         </div>
       </div>
-      <div className="top-header__logo"></div>
+      <Link href="/">
+        <a className="top-header__logo"></a>
+      </Link>
       <div
         className="top-header__account"
         onClick={globalState.accountModalOpenAction}

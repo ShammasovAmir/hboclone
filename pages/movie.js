@@ -9,7 +9,10 @@ export default function Movie() {
   return AuthCheck(
     <MainLayout>
       <FeaturedMedia />
-      <MediaRow title="More Like This" />
+      <MediaRow
+        title="More Like This"
+        endpoint="discover/movie?sort_by=popularity.desc"
+      />
       <CastInfo />
     </MainLayout>
   )

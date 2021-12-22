@@ -33,11 +33,7 @@ const Login = () => {
           className="login-user__user-box"
           key={i}
         >
-          <img
-            src="https://uifaces.co/our-content/donated/vIqzOHXj.jpg"
-            alt=""
-            className="login-user__user-img"
-          />
+          <img src="" alt="" className="login-user__user-img" />
           <div className="login-user__user-name">{user.name}</div>
         </div>
       ))

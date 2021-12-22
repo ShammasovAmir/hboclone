@@ -1,8 +1,9 @@
 import axios from 'axios'
+import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { shuffleArray } from '../../utilities'
 
-const MediaRow = ({ title, type, endpoint }) => {
+const MediaRow = ({ title, type, mediaType, endpoint }) => {
   const [loadingData, setLoadingData] = useState(true)
   const [movies, setMovies] = useState([])
 
@@ -25,7 +26,7 @@ const MediaRow = ({ title, type, endpoint }) => {
         console.log('Error for ' + title)
         console.log(error)
       })
-  }, [])
+  }, [endpoint, title])
 
   const loopComp = (comp, digit) => {
     let thumbnails = []
@@ -40,7 +41,12 @@ const MediaRow = ({ title, type, endpoint }) => {
     return loadingData
       ? loopComp(<Skeleton />, 10)
       : movies.map((movie) => (
-          <Thumbnail movieData={movie} type={type} key={movie.id} />
+          <Thumbnail
+            movieData={movie}
+            type={type}
+            mediaType={mediaType}
+            key={movie.id}
+          />
         ))
   }
 
@@ -52,7 +58,7 @@ const MediaRow = ({ title, type, endpoint }) => {
   )
 }
 
-const Thumbnail = ({ movieData, type }) => {
+const Thumbnail = ({ movieData, type, mediaType }) => {
   const thumbnailSize = (type) => {
     switch (type) {
       case 'large-v':
@@ -70,17 +76,21 @@ const Thumbnail = ({ movieData, type }) => {
   }
 
   return (
-    <div className="media-row__thumbnail">
-      <img
-        src={`https://image.tmdb.org/t/p/w${thumbnailSize(type)}/${
-          movieData.poster_path
-        }`}
-        alt=""
-      />
-      <div className="media-row__top-layer">
-        <i className="fas fa-play" />
-      </div>
-    </div>
+    <Link href={`/${mediaType === 'series' ? 'tv' : 'movie'}/${movieData.id}`}>
+      <a>
+        <div className="media-row__thumbnail">
+          <img
+            src={`https://image.tmdb.org/t/p/w${thumbnailSize(type)}/${
+              movieData.poster_path
+            }`}
+            alt=""
+          />
+          <div className="media-row__top-layer">
+            <i className="fas fa-play" />
+          </div>
+        </div>
+      </a>
+    </Link>
   )
 }
 
@@ -89,5 +99,9 @@ const Skeleton = () => (
     <div className="media-row__thumbnail-skeleton-img"></div>
   </div>
 )
+
+MediaRow.defaultProps = {
+  mediaType: 'movie',
+}
 
 export default MediaRow
